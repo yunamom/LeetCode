@@ -1,17 +1,19 @@
-import java.util.*;
 class Solution {
     public int searchInsert(int[] nums, int target) {
-        TreeMap<Integer,Integer>map = new TreeMap<>();
-        map.put(target,target);
-        for(int i=0; i<nums.length; i++){
-            map.put(nums[i],nums[i]);
-        }
+        int start = 0;
+        int last = nums.length-1;
         
-        int answer = 0;
-        for(Integer key : map.keySet()){
-            if(target == map.get(key)) return answer;
-            answer ++;
+        while(start <= last){
+            int mid = (start+last)/2;
+            
+            if(nums[mid] == target) return mid;
+            
+            if(nums[mid] < target){
+                start = mid+1;
+            }else{ 
+                last = mid-1;
+            }
         }
-        return 0;
+        return last+1;
     }
 }
