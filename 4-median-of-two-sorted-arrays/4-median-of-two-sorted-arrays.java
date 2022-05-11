@@ -1,7 +1,5 @@
 class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        double n = 0; int cnt = 0;
-       
         int[] nums = new int[nums1.length+nums2.length];
         int i=0;
         for(int e:nums1) nums[i++] = e;
