@@ -1,15 +1,11 @@
 class Solution {
     public int singleNumber(int[] nums) {
-        Arrays.sort(nums);
-        for(int i=2; i<nums.length; i+=3){
-            int answer = 0;
-            
-            answer ^= nums[i];
-            answer ^= nums[i-1];
-            answer ^= nums[i-2];
-            
-            if(answer != nums[i]) return answer;                   
+        int N1 = 0, N2 = 0;
+        
+        for(int num : nums){
+            N1 = ~N2 & (N1 ^ num);
+            N2 = ~N1 & (N2 ^ num);
         }
-        return nums[nums.length-1];
+        return N1;
     }
 }
